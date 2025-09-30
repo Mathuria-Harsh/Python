@@ -15,7 +15,8 @@ class User(models.Model):
     email = models.EmailField(unique=True)
     mno = models.BigIntegerField(unique=True)           # mobile number
     password = models.CharField(max_length=20)
-
+    profile = models.ImageField(default="")
+    usertype = models.CharField(max_length=20, default="pateint")   
 
     def __str__(self):
         return f"{self.name}" 

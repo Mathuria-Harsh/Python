@@ -29,4 +29,7 @@ urlpatterns = [
     path('otp/', views.otp, name='otp'),
     path('newpass/', views.newpass, name='newpass'),
     path('changepass/', views.changepass, name='changepass'),
+    path('uprofile/', views.uprofile, name='uprofile'),
+    path('dindex/', views.dindex, name='dindex'),
+    path('duprofile/', views.duprofile, name='duprofile'),
 ]

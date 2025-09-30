@@ -59,8 +59,10 @@
                                     <nav> 
                                         <ul id="navigation">
                                             <li><a href="{% url 'index' %}">Home</a></li>
-                                            <li><a href="services.html">Services</a></li>
-                                            <li><a href="{% url 'contact' %}">Contact</a></li>
+                                            <li><a href="services.html">Add-Doctor</a></li>
+                                            <li><a href="services.html">View-Doctor</a></li>
+                                            
+                                            {% comment %} <li><a href="{% url 'contact' %}">Contact</a></li> {% endcomment %}
                                             
                                             {% if request.session.email %}
                                             <li><a href="{% url 'changepass' %}">Change-Password</a></li>     

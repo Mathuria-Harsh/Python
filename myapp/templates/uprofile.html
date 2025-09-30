@@ -13,7 +13,7 @@
                         <div class="col-xl-7 col-lg-8 col-md-10 ">
                          <div class="hero-wrapper">
                             <div class="hero__caption">
-                                <h1 data-animation="fadeInUp" data-delay=".3s">Signup</h1>
+                                <h1 data-animation="fadeInUp" data-delay=".3s">Profile</h1>
                                 <p data-animation="fadeInUp" data-delay=".6s">Almost before we knew it, we<br> had left the ground</p>
                             </div>
                         </div>
@@ -77,58 +77,43 @@
         {% endif %}
         <div class="row">
             <div class="col-12">
-                <h2 class="contact-title">Enter details to signup</h2>
+                <h2 class="contact-title">User details</h2>
             </div>
             <div class="col-lg-8">
-                <form class="form-contact contact_form" action="{% url 'signup' %}" method="post" enctype="multipart/form-data">
+                <form class="form-contact contact_form" action="{% url 'uprofile' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
 
                     <div class="row">
-
-                        <div class="col-sm-7">
-                            <select name="usertype" id="">
-                                <option value="" disabled selected>Select Usertype</option>
-                                <option value="pateint">Pateint</option>
-                                <option value="doctor">Doctor</option>
-                            </select>
-                        </div>
-
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <input class="form-control valid" name="name" id="name" type="text" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter your name'" placeholder="Enter your name">
+                                <input class="form-control valid" name="name" id="name" type="text" onfocus="this.placeholder = ''" value="{{user.name}}">
                             </div>
                         </div>
 
                         <div class="col-sm-7">
                             <div class="form-group">
-                                <input class="form-control valid" name="email" id="email" type="email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter email address'" placeholder="Email">
+                                <input class="form-control valid" name="email" id="email" type="email" onfocus="this.placeholder = ''" value="{{user.email}}" readonly>
                             </div>
                         </div>
 
                         <div class="col-7">
                             <div class="form-group">
-                                <input class="form-control" name="mno" id="mno" type="tel" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'" placeholder="Enter Mobile Number">
+                                <input class="form-control" name="mno" id="mno" type="tel" onfocus="this.placeholder = ''" value="{{user.mno}}">
                             </div>
                         </div>
 
                         <div class="col-7">
                             <div class="form-group">
-                                <input class="form-control" name="password" id="password" type="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'" placeholder="Enter Password">
+                                <input class="form-control" name="password" id="password" type="password" onfocus="this.placeholder = ''" value="{{user.password}}">
                             </div>
                         </div>
 
                         <div class="col-7">
-                            <div class="form-group">
-                                <input class="form-control" name="cpassword" id="password" type="password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'" placeholder="Enter Confirm Password">
-                            </div>
-                        </div>
+                            <img src="{{user.profile.url}}" alt="" height="250px" width="250px" style="border-radius: 50px;">
+                            
+                            <br>
+                            <br>
 
-                        <div class="col-7">
                             <div class="form-group">
                                 <input class="form-control" name="profile" id="subject" type="file" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Enter Subject'">
                             </div>
@@ -136,7 +121,7 @@
                     </div>
 
                     <div class="form-group mt-3">
-                        <button type="submit" class="button button-contactForm boxed-btn">Signup</button>
+                        <button type="submit" class="button button-contactForm boxed-btn">Update-Profile</button>
                     </div>
                 </form>
             </div>

@@ -27,7 +27,9 @@ def signup(request):
                     name = request.POST['name'],
                     email = request.POST['email'],
                     mno = request.POST['mno'],
-                    password = request.POST['password']
+                    password = request.POST['password'],
+                    profile = request.FILES['profile'],
+                    usertype = request.POST['usertype']
                 )
                 msg = "Signup Succuessful"
                 return render(request, 'signup.html', {'msg':msg})
@@ -46,7 +48,13 @@ def login(request):
 
             if user.password==request.POST['password']:
                 request.session['email']=user.email
-                return redirect('index')
+                request.session['profile']=user.profile.url
+
+                if user.usertype=="pateint":
+                    return redirect('index')
+                
+                else:
+                    return redirect('dindex')
             
             else:
                 msg = "Password does not match"
@@ -61,7 +69,8 @@ def login(request):
 
 def logout(request):
     del request.session['email']
-    return redirect('login')
+    del request.session['profile']
+    return redirect('index')            # we can also keep "login"
 
 def fpass(request):
     if request.method=="POST":
@@ -164,3 +173,48 @@ def changepass(request):
     
     else:
         return render(request, 'changepass.html')
+
+
+def uprofile(request):
+    user = User.objects.get(email=request.session['email'])
+
+    if request.method=='POST':
+
+        user.name = request.POST['name']
+        user.mno = request.POST['mno']
+        try:
+            user.profile = request.FILES['profile']
+            request.session['profile'] = user.profile.url   # session update
+            user.save()
+        except:
+            pass
+        user.save()
+
+        if user.usertype=="pateint":
+            return redirect('index')
+        else:
+            return redirect('dindex')
+        
+    else:
+        if user.usertype=="pateint":
+            return render(request, 'uprofile.html', {'user':user})
+
+        else:
+            return render(request, 'duprofile.html', {'user':user})
+    
+
+def dindex(request):
+    try:
+        pass
+
+    except:
+        pass
+    return render(request, 'dindex.html')
+
+def duprofile(request):
+    try:
+        pass
+
+    except:
+        pass
+    return render(request, 'duprofile.html')
