@@ -59,7 +59,7 @@
                                     <nav> 
                                         <ul id="navigation">
                                             <li><a href="{% url 'index' %}">Home</a></li>
-                                            <li><a href="services.html">Services</a></li>
+                                            {% comment %} <li><a href="services.html">Services</a></li> {% endcomment %}
                                             <li><a href="{% url 'contact' %}">Contact</a></li>
                                             
                                             {% if request.session.email %}

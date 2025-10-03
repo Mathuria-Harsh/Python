@@ -184,8 +184,7 @@ def uprofile(request):
         user.mno = request.POST['mno']
         try:
             user.profile = request.FILES['profile']
-            request.session['profile'] = user.profile.url   # session update
-            user.save()
+            request.session['profile'] = user.profile.url   # session update, for profile image updatea
         except:
             pass
         user.save()
@@ -206,7 +205,6 @@ def uprofile(request):
 def dindex(request):
     try:
         pass
-
     except:
         pass
     return render(request, 'dindex.html')
@@ -214,7 +212,9 @@ def dindex(request):
 def duprofile(request):
     try:
         pass
-
     except:
         pass
     return render(request, 'duprofile.html')
+
+def add(request):
+    return render(request, 'add.html')
