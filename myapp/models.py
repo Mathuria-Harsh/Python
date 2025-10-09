@@ -24,7 +24,7 @@ class User(models.Model):
 
 
 class Doctor(models.Model):
-    doctor = models.ForeignKey(User, on_delete=models.CASCADE)
+    doctor = models.ForeignKey(User, on_delete=models.CASCADE)      # doctor belongs to a User
 
     category = (
             ("Dermatologist", "Dermatologist"),
@@ -39,10 +39,10 @@ class Doctor(models.Model):
     qfc = models.CharField(max_length=40)
     charges = models.IntegerField()
     address = models.TextField()
-    dtime = models.TimeField(default=time(9, 0))
-    dctime = models.TimeField(default=time(9, 0))
+    start_time = models.TimeField(auto_now=False, auto_now_add=False)
+    end_time = models.TimeField(auto_now=False, auto_now_add=False)
     exp = models.IntegerField()
     dimage = models.ImageField(default="", upload_to='doctor/')
 
     def __str__(self):
-        return f"{self.doctor}"
+        return f"{self.dname}"

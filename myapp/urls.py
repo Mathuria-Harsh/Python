@@ -33,4 +33,5 @@ urlpatterns = [
     path('dindex/', views.dindex, name='dindex'),
     path('duprofile/', views.duprofile, name='duprofile'),
     path('add/', views.add, name='add'),
+    path('view/', views.view, name='view'),
 ]

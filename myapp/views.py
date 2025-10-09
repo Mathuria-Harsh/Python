@@ -200,7 +200,7 @@ def uprofile(request):
 
         else:
             return render(request, 'duprofile.html', {'user':user})
-    
+
 
 def dindex(request):
     try:
@@ -217,4 +217,34 @@ def duprofile(request):
     return render(request, 'duprofile.html')
 
 def add(request):
-    return render(request, 'add.html')
+    if request.method=="POST":
+        try:
+            user = User.objects.get(email=request.session['email'])
+            
+            Doctor.objects.create(
+                doctor = user,           # link this doctor to the logged-in user (from foreign key)
+                cchoice = request.POST['cchoice'],
+                dname = request.POST['dname'],
+                demail = request.POST['demail'],
+                qfc = request.POST['qfc'],
+                charges = request.POST['charges'],
+                address = request.POST['address'],
+                start_time = request.POST['start_time'],
+                end_time = request.POST['end_time'],
+                exp = request.POST['exp'],
+                dimage = request.FILES['dimage']
+            )
+
+            msg = "Doctor added successfully"
+            return render(request, 'add.html', {'msg':msg})
+        
+        except Exception as e:
+            print("******Error******", e)
+            return redirect('dindex')
+    
+    else:
+        return render(request, 'add.html')
+    
+
+def view(request):
+    return render(request, 'view.html')

@@ -58,9 +58,9 @@
                                 <div class="main-menu f-right d-none d-lg-block">
                                     <nav> 
                                         <ul id="navigation">
-                                            <li><a href="{% url 'index' %}">Home</a></li>
+                                            <li><a href="{% url 'dindex' %}">Home</a></li>
                                             <li><a href="{% url 'add' %}">Add-Doctor</a></li>
-                                            <li><a href="services.html">View-Doctor</a></li>
+                                            <li><a href="{% url 'view' %}">View-Doctor</a></li>
                                             
                                             {% comment %} <li><a href="{% url 'contact' %}">Contact</a></li> {% endcomment %}
                                             
